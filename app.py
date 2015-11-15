@@ -11,15 +11,20 @@ def home():
 @app.route("/w")
 @app.route("/w/<word>")
 def w(word=""):
+    """ 
+    gets word that user entered in home page and uses etymology api to 
+    display its etymology
+    """
     key="a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5"
     url="http://api.wordnik.com:80/v4/word.json/%s/etymologies?useCanonical=true&api_key=%s"
     url = url%(word,key)
     request = urllib2.urlopen(url)
     result = request.read()
     r = json.loads(result)
-
-    return render_template("etymology.html",data=r[0])
-
+    try:
+        return render_template("etymology.html",data=r[0], error=False)
+    except:
+        return render_template("etymology.html",error=True, data="bad word")
 if __name__=="__main__":
     app.debug = True
     app.run(host='0.0.0.0',port=8000)
