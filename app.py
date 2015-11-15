@@ -10,7 +10,7 @@ def home():
 
 @app.route("/w")
 @app.route("/w/<word>")
-def w(word="test"):
+def w(word=""):
     key="a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5"
     url="http://api.wordnik.com:80/v4/word.json/%s/etymologies?useCanonical=true&api_key=%s"
     url = url%(word,key)
@@ -18,7 +18,7 @@ def w(word="test"):
     result = request.read()
     r = json.loads(result)
 
-    return render_template("etymology.html",link = url)
+    return render_template("etymology.html",data=r[0])
 
 if __name__=="__main__":
     app.debug = True
