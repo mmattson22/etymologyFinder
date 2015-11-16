@@ -32,7 +32,7 @@ def answer(word):
         return render_template("answer.html",word=word, etymology=r[0], error=False)
       
     except:
-        return render_template("etymology.html",error=True, word="bad word", etymology="none :(")
+        return render_template("answer.html",error=True, word="bad word", etymology="no etymology for that word, try again")
 if __name__=="__main__":
     app.debug = True
     app.run(host='0.0.0.0',port=8000)
