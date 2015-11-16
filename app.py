@@ -12,10 +12,11 @@ def home():
         w = request.form.get('word')
         return redirect(url_for("answer",word=w))
 
-#@app.route("/w")
+
 @app.route("/answer",methods=["GET","POST"])
 @app.route("/answer/<word>",methods=["GET","POST"])
 def answer(word):
+
     """ 
     gets word that user entered in home page and uses etymology api to 
     display its etymology
@@ -29,8 +30,9 @@ def answer(word):
         result = request.read()
         r = json.loads(result)
         return render_template("answer.html",word=word, etymology=r[0], error=False)
+      
     except:
-        return render_template("answer.html",error=True, word="bad word", etymology="none :(")
+        return render_template("etymology.html",error=True, word="bad word", etymology="none :(")
 if __name__=="__main__":
     app.debug = True
     app.run(host='0.0.0.0',port=8000)
