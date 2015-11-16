@@ -36,7 +36,9 @@
 
                 <div class="col-md-11 answer">
                     <h2>{{word}}</h2>
-                    <p>{{etymology}}</p>
+		    {% for o in etymology %}
+                    <p> {{o}} </p>
+		    {% endfor %}
                 </div>
             </div>
         </div>

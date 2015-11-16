@@ -16,7 +16,6 @@ def home():
 @app.route("/answer",methods=["GET","POST"])
 @app.route("/answer/<word>",methods=["GET","POST"])
 def answer(word):
-
     """ 
     gets word that user entered in home page and uses etymology api to 
     display its etymology
@@ -29,10 +28,26 @@ def answer(word):
         request = urllib2.urlopen(url)
         result = request.read()
         r = json.loads(result)
-        return render_template("answer.html",word=word, etymology=r[0], error=False)
-      
+        x = r[0][38:]
+        print x
+        x = x.replace("<ety>","")
+        x = x.replace("</ety>","")
+        x = x.replace("<ets>","")
+        x = x.replace("</ets>","")
+        x = x.replace("[","")
+        x = x.replace("]","")
+        x = x.replace("<er>","")
+        x = x.replace("</er>","")
+        x = x.replace("fr.","//from")
+        x = x.replace("cf.","//-//cf.")
+        x = x.replace("Cf.","//-//cf.")
+        d = x.split("//")
+        print str(d)
+        return render_template("answer.html",word=word, etymology=d, error=False)
     except:
-        return render_template("answer.html",error=True, word="bad word", etymology="no etymology for that word, try again")
+        return render_template("answer.html",error=True, word="bad word", etymology=["no etymology for that word, try again"])
+
+
 if __name__=="__main__":
     app.debug = True
     app.run(host='0.0.0.0',port=8000)
