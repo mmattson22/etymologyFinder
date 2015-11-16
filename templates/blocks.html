@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+    
+    {% block head%}
     <!-----------------BEGIN HEAD, IMPORT ALL STYLING, SET TITLE-------------------->
     <head>
         <meta charset="utf-8">
@@ -23,44 +25,33 @@
 
     </head>
     <!-------------------END HEAD---------------------------------->
+    {% endblock head %}
     
     
     
     
-    
-    
+    {% block body %}
     <!-------------BEGIN BODY --------------->
     <body>
         <div class="formholder">
-            <!--Start Form-->
-            <form action="/answer.html" method="GET">
-                <!-----------HEADER WRITING-------->
+            <form method="GET">
                 <center>
                     <h2>Where's it from?</h2>
                     <h7>Ever wondered where those big SAT Words came from? Enter one here and our word wizard can tell you!</h7>
                 </center>
-                
-                
-                <!---------------BEGIN INPUT GROUP--------------------->
                     <div class="input-group input-group-hg input-group-rounded forminputs">
                         <input id="wordinput" type="text" placeholder="Enter a word.." class="form-control" />
                         <span class="input-group-btn">
                             <button type="submit" class="btn">
-                                <!------------take out the anchor tag once connected to python------->
-                                <a href="/templates/answer.html">
-                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                                </a>
-                                <!-------------------------but keep the span--------------------------------->
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                             </button>
                         </span>
                     </div>
-                <!---------------END INPUT GROUP--------------------->
-                
             </form>
-            <!---End Form--->
         </div>
     </body>
-    <!-------------END BODY --------------->
+    <!-------------END BODY------------------->
+    {% endblock body %}
+    
 </html>
-
 
