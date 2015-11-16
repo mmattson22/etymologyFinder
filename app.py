@@ -22,9 +22,9 @@ def w(word=""):
     result = request.read()
     r = json.loads(result)
     try:
-        return render_template("etymology.html",data=r[0], error=False)
+        return render_template("answer.html",word=word, etymology=r[0], error=False)
     except:
-        return render_template("etymology.html",error=True, data="bad word")
+        return render_template("answer.html",error=True, word="bad word", etymology="none :(")
 if __name__=="__main__":
     app.debug = True
     app.run(host='0.0.0.0',port=8000)
