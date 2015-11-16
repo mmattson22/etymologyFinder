@@ -4,11 +4,11 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 @app.route("/")
-@app.route("/hometest")
+@app.route("/home")
 def home():
-    return render_template("hometest.html")
+    return render_template("home.html")
 
-#@app.route("/w")
+@app.route("/answer")
 @app.route("/answer/<word>")
 def answer(word=""):
     """ 
@@ -22,8 +22,8 @@ def answer(word=""):
     result = request.read()
     r = json.loads(result)
     try:
-        #return render_template("answer.html",word=word, etymology=r[0], error=False)
-        return render_template("etymology.html",word=word, etymology=r[0], error=False)
+        return render_template("answer.html",word=word, etymology=r[0], error=False)
+      
     except:
         return render_template("etymology.html",error=True, word="bad word", etymology="none :(")
 if __name__=="__main__":
