@@ -4,9 +4,9 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 @app.route("/")
-@app.route("/home")
+@app.route("/hometest")
 def home():
-    return render_template("home.html")
+    return render_template("hometest.html")
 
 #@app.route("/w")
 @app.route("/answer/<word>")
@@ -22,9 +22,10 @@ def answer(word=""):
     result = request.read()
     r = json.loads(result)
     try:
-        return render_template("answer.html",word=word, etymology=r[0], error=False)
+        #return render_template("answer.html",word=word, etymology=r[0], error=False)
+        return render_template("etymology.html",word=word, etymology=r[0], error=False)
     except:
-        return render_template("answer.html",error=True, word="bad word", etymology="none :(")
+        return render_template("etymology.html",error=True, word="bad word", etymology="none :(")
 if __name__=="__main__":
     app.debug = True
     app.run(host='0.0.0.0',port=8000)
