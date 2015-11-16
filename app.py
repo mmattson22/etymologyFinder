@@ -8,9 +8,9 @@ app = Flask(__name__)
 def home():
     return render_template("home.html")
 
-@app.route("/w")
-@app.route("/w/<word>")
-def w(word=""):
+#@app.route("/w")
+@app.route("/answer/<word>")
+def answer(word=""):
     """ 
     gets word that user entered in home page and uses etymology api to 
     display its etymology
